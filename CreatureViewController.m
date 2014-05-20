@@ -9,9 +9,8 @@
 #import "CreatureViewController.h"
 
 @interface CreatureViewController ()
-@property (strong, nonatomic) IBOutlet UILabel *creatureNameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *creatureDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UITextField *creatureNameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *creatureDescriptionTextField;
 
 @end
 
@@ -20,9 +19,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.creatureNameLabel.text = self.creature.name;
-    self.creatureDescriptionLabel.text = self.creature.description;
-    self.creatureNameTextField.hidden = YES;
+    self.creatureNameTextField.text = self.creature.name;
+    self.creatureDescriptionTextField.text = self.creature.description;
+    self.creatureNameTextField.enabled = NO;
+    self.creatureDescriptionTextField.enabled = NO;
 }
 
 - (IBAction)onEditButtonPressed:(UIButton *)button
@@ -30,15 +30,18 @@
     if(self.editing)
     {
         [button setTitle:@"Edit" forState:UIControlStateNormal];
-        self.creatureNameLabel.text = self.creatureNameTextField.text;
         self.creature.name = self.creatureNameTextField.text;
-        self.creatureNameTextField.hidden = YES;
+        self.creature.description = self.creatureDescriptionTextField.text;
+        self.creatureNameTextField.enabled = NO;
+        self.creatureDescriptionTextField.enabled = NO;
     }
     else
     {
         [button setTitle:@"Done" forState:UIControlStateNormal];
         self.creatureNameTextField.text = self.creature.name;
-        self.creatureNameTextField.hidden = NO;
+        self.creatureDescriptionTextField.text = self.creature.description;
+        self.creatureNameTextField.enabled = YES;
+        self.creatureDescriptionTextField.enabled = YES;
     }
 
     self.editing = !self.editing;

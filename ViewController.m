@@ -13,6 +13,7 @@
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UITextField *creatureNameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *creatureDescriptionTextField;
 
 @end
 
@@ -35,10 +36,13 @@
 - (IBAction)onAddButtonPressed:(id)sender
 {
     [self.creatureNameTextField resignFirstResponder];
-    MagicalCreature *creature = [[MagicalCreature alloc] initWithName:self.creatureNameTextField.text description:@""];
+    [self.creatureDescriptionTextField resignFirstResponder];
+    MagicalCreature *creature = [[MagicalCreature alloc] initWithName:self.creatureNameTextField.text
+                                                          description:self.creatureDescriptionTextField.text];
     [self.creatures addObject:creature];
     [self.tableView reloadData];
     self.creatureNameTextField.text = @"";
+    self.creatureDescriptionTextField.text = @"";
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
