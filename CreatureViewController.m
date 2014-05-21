@@ -11,6 +11,7 @@
 @interface CreatureViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *creatureNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *creatureDescriptionTextField;
+@property (strong, nonatomic) IBOutlet UIImageView *creatureImageView;
 
 @end
 
@@ -21,6 +22,7 @@
     [super viewDidLoad];
     self.creatureNameTextField.text = self.creature.name;
     self.creatureDescriptionTextField.text = self.creature.description;
+    self.creatureImageView.image = self.creature.image;
     self.creatureNameTextField.enabled = NO;
     self.creatureDescriptionTextField.enabled = NO;
 }

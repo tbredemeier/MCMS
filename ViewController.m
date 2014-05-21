@@ -22,9 +22,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    MagicalCreature *mc1 = [[MagicalCreature alloc] initWithName:@"Thomas" description:@"Lyger"];
-    MagicalCreature *mc2 = [[MagicalCreature alloc] initWithName:@"Ralphie" description:@"Centaur"];
-    MagicalCreature *mc3 = [[MagicalCreature alloc] initWithName:@"Chester" description:@"Unicorn"];
+    MagicalCreature *mc1 = [[MagicalCreature alloc] initWithName:@"Thomas"
+                                                     description:@"Lyger"
+                                                           image:[UIImage imageNamed:@"image1.png"]];
+    MagicalCreature *mc2 = [[MagicalCreature alloc] initWithName:@"Ralphie"
+                                                     description:@"Centaur"
+                                                           image:[UIImage imageNamed:@"image2.png"]];
+    MagicalCreature *mc3 = [[MagicalCreature alloc] initWithName:@"Chester"
+                                                     description:@"Unicorn"
+                                                           image:[UIImage imageNamed:@"image3.png"]];
     self.creatures = [NSMutableArray arrayWithObjects:mc1, mc2, mc3, nil];
 }
 
@@ -37,8 +43,7 @@
 {
     [self.creatureNameTextField resignFirstResponder];
     [self.creatureDescriptionTextField resignFirstResponder];
-    MagicalCreature *creature = [[MagicalCreature alloc] initWithName:self.creatureNameTextField.text
-                                                          description:self.creatureDescriptionTextField.text];
+    MagicalCreature *creature = [[MagicalCreature alloc] initWithName:self.creatureNameTextField.text  description:self.creatureDescriptionTextField.text image:[UIImage imageNamed:@"AngryBirds"]];
     [self.creatures addObject:creature];
     [self.tableView reloadData];
     self.creatureNameTextField.text = @"";
@@ -56,6 +61,7 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CreatureCell"];
     cell.textLabel.text = creature.name;
     cell.detailTextLabel.text = creature.description;
+    cell.imageView.image = creature.image;
 
     return cell;
 }
